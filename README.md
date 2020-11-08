@@ -23,12 +23,14 @@ docker run -p 8080:8080 mzunair/node-rest-api:latest -d
 docker ps
 
 ## Stop running container
-docker stop <CONTAINER ID>
+docker stop "CONTAINER ID"
+
 #e-g
 docker stop 56987377c7cc
 
 ## Check Logs
-docker logs <CONTAINER ID>
+docker logs "CONTAINER ID"
+
 #e-g
 docker logs 56987377c7cc
 
