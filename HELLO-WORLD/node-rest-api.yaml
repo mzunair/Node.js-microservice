@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  generation: 1
+  labels:
+    component: node-rest-api
+  name: node-rest-api
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: node-rest-api
+  template:
+    metadata:
+      labels:
+        component: node-rest-api
+    spec:
+      containers:
+      - image: mzunair/node-rest-api:latest
+        imagePullPolicy: Always
+        name: node-rest-api
+        ports:
+        - containerPort: 8080
+          name: rest-api-port
+          protocol: TCP
+        command: ["/bin/sh"]
+        args: ["-c", "node /usr/src/app/app.js"]
+      # imagePullSecrets:
+      #   # Add the kubernetes secret name if image exists on a private repository
+      #   - name: api-image-pull-secret
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    component: node-rest-api-service
+  name: node-rest-api-service
+  namespace: default
+spec:
+  ports:
+  - name: rest-api-port
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    component: node-rest-api
+  type: LoadBalancer
+
+---

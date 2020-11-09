@@ -38,3 +38,10 @@ docker logs 56987377c7cc
 curl -i -k https://localhost:8080/hello
 ## OR
 open https://localhost:8080/hello in browser
+
+
+----
+
+# Kubernetes Deployment
+
+kubectl apply -f node-rest-api.yaml

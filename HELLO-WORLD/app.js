@@ -42,7 +42,7 @@ app.set('port', port);
 // Create HTTPS server to server the REST Endpoints
 var httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(port, () => {
+httpsServer.listen(port, "0.0.0.0", () => {
   logger.info(`Server running at https://${hostname}:${port}/`);
   // console.log(`Server running at https://${hostname}:${port}/`);
 });
