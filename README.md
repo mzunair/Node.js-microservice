@@ -45,3 +45,7 @@ open https://localhost:8080/hello in browser
 # Kubernetes Deployment
 
 kubectl apply -f node-rest-api.yaml
+
+-----
+
+# Added CICD configurations.
